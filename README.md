@@ -1,6 +1,12 @@
-# (Forked from Kaleo) 
+# (Forked from Kaleo)
 # Rails Engineer Candidate Interview Project
 
+User story:
+- [x] Add API to consume available (private != false) Questions that support query, URL: `/questions?q=query`, include api key of tenant in request headers with key `api-key`.
+- [x] Track API request counts per tenant.
+- [x] Add simple view to show total number of users, questions, answers and API call count in root path.
+- [x] return 404 code when `q` present in query params and there's no matched question.
+- [x] Add a piece of middleware to throttle API requests on a per-Tenant basis. After the first 100 requests per day, throttle to 1 request per 10 seconds.
 Thanks for taking the time to complete this exercise. We're excited that you're considering joining our amazing team.
 
 This Rails application is a basic skeleton of an app that serves an API about questions and answers. It already includes 4 basic models:
