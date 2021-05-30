@@ -18,6 +18,7 @@ RSpec.describe "Questions", type: :request do
 
     context 'authorized request' do
       let(:headers) { { 'api-key': tenant.api_key } }
+
       it 'returns 200' do
         subject
         expect(response.status).to eq(200)
@@ -27,6 +28,10 @@ RSpec.describe "Questions", type: :request do
         subject
         responsed_questions = JSON.parse(response.body)
         expect(responsed_questions.count).to eq(5)
+      end
+
+      it 'increases api_call_count by 1' do
+        expect { subject }.to change { tenant.reload.api_call_count }.by(1)
       end
     end
   end

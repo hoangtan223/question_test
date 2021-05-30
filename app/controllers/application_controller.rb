@@ -5,12 +5,18 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_request
 
+  attr_reader :current_tenant
+
   private
 
   def authenticate_request
     api_key = request.headers['api-key']
     @current_tenant = Tenant.find_by(api_key: api_key)
 
-    head :unauthorized unless @current_tenant
+    if @current_tenant
+      current_tenant.update(api_call_count: current_tenant.api_call_count + 1)
+    else
+      head :unauthorized
+    end
   end
 end
