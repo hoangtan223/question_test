@@ -1,7 +1,8 @@
 # (Forked from Kaleo)
 # Rails Engineer Candidate Interview Project
 
-User story:
+## User story:
+
 - [x] Add API to consume available (private != false) Questions that support query, URL: `/questions?q=query`, include api key of tenant in request headers with key `api-key`.
 - [x] Track API request counts per tenant.
 - [x] Add simple view to show total number of users, questions, answers and API call count in root path.
