@@ -1,7 +1,12 @@
 class QuestionsController < ApplicationController
   def index
-    questions = Question.where(private: false).includes(answers: [:user])
+    service = GetQuestionsService.new(params[:q])
 
-    render json: questions
+    if service.call
+      render json: service.data
+    else
+      head :not_found
+      return
+    end
   end
 end
